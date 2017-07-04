@@ -20,23 +20,23 @@ feature 'Follower / Followee' do
   it 'allows to follow people' do
     visit profile_path(users[0].profile)
 
-    page.should have_link 'Follow'
+    expect(page).to have_link 'Follow'
     click_on 'Follow'
 
     visit profile_path('me')
-    page.should have_content '1 Abonnements'
+    expect(page).to have_content '1 Abonnements'
   end
 
   it 'allows to un-follow people' do
     visit profile_path(users[0].profile)
 
-    page.should have_link 'Follow'
+    expect(page).to have_link 'Follow'
     click_on 'Follow'
-    page.should have_link 'Unfollow'
+    expect(page).to have_link 'Unfollow'
     click_on 'Unfollow'
 
     visit profile_path('me')
-    page.should have_content '0 Abonnements'
+    expect(page).to have_content '0 Abonnements'
   end
 
   def follow_everyone
@@ -45,7 +45,7 @@ feature 'Follower / Followee' do
       click_on 'Follow'
     end
     visit profile_path('me')
-    page.should have_content '3 Abonnements'
+    expect(page).to have_content '3 Abonnements'
   end
 
   it 'displays Followers/Followees on dedicated pages' do
@@ -53,13 +53,13 @@ feature 'Follower / Followee' do
 
     # Followees
     visit profile_followees_path('me')
-    page.should have_content "Abonnements de @#{user.username}"
-    users.each { |u| page.should have_link "@#{u.username}" }
+    expect(page).to have_content "Abonnements de @#{user.username}"
+    users.each { |u| expect(page).to have_link "@#{u.username}" }
 
     # Followers
     visit profile_followers_path(users[0].profile)
-    page.should have_content "Abonnes de @#{users[0].username}"
-    page.should have_link "@#{user.username}"
+    expect(page).to have_content "Abonnes de @#{users[0].username}"
+    expect(page).to have_link "@#{user.username}"
   end
 
   it 'displays Followees gazooies in user\'s stream' do
@@ -68,6 +68,6 @@ feature 'Follower / Followee' do
     visit root_path
     within('.navbar-default') { click_on 'Stream' } # gazooies#index
 
-    users.each { |u| page.should have_content "Gazooy from @#{u.username}" }
+    users.each { |u| expect(page).to have_content "Gazooy from @#{u.username}" }
   end
 end

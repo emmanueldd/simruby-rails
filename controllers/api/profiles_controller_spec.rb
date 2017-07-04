@@ -15,12 +15,12 @@ describe Api::ProfilesController do
       user = User.create! valid_attributes_user
       profile = user.profile
       get :show, {id: user.id}
-      assigns(:profile).should eq(profile)
+      expect(assigns(:profile)).to eq(profile)
     end
 
     it 'Test on unknown id' do
       get :show, {id:  999999} # 9999999 just to show it's not supposed to exist :-)
-      assigns(:profile).should be_nil
+      expect(assigns(:profile)).to be_nil
     end
   end
 
@@ -30,12 +30,12 @@ describe Api::ProfilesController do
       user.follower_links.create(follower_id: 1)
       profile = user.profile
       get :followers, {profile_id: profile.id}
-      assigns(:followers).should eq(user.followers)
+      expect(assigns(:followers)).to eq(user.followers)
     end
 
     it 'Test on followers list with not unknown id' do
       get :followers, {profile_id: 999999} # 9999999 just to show it's not supposed to exist :-)
-      assigns(:followers).should be_nil
+      expect(assigns(:followers)).to be_nil
     end
   end
 
@@ -45,12 +45,12 @@ describe Api::ProfilesController do
       user.followee_links.create(followee_id: 1)
       profile = user.profile
       get :followees, {profile_id: profile.id}
-      assigns(:followees).should eq(user.followees)
+      expect(assigns(:followees)).to eq(user.followees)
     end
 
     it 'Test on followees list with not unknown id' do
       get :followees, {profile_id: 999999} # 9999999 just to show it's not supposed to exist :-)
-      assigns(:followees).should be_nil
+      expect(assigns(:followees)).to be_nil
     end
   end
 

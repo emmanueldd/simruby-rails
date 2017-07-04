@@ -15,17 +15,17 @@ feature 'Twitter\'s Bootstrap CSS framework' do
   it 'provides a grid on the page' do
     visit root_path
 
-    page.should have_css('.container')
-    page.should have_css('.row')
-    page.should have_css('.col-md-4')     # Menu a gauche/droite
-    page.should have_css('.col-md-8')     # Main content
+    expect(page).to have_css('.container')
+    expect(page).to have_css('.row')
+    expect(page).to have_css('.col-md-4')     # Menu a gauche/droite
+    expect(page).to have_css('.col-md-8')     # Main content
   end
 
   it 'provides some cool graphic graphic tricks' do
     visit root_path
 
-    page.should have_css('.well')      # Utilise un well qq part, ca fait tjs clase
-    page.should have_css('.jumbotron') # Utilise un Hero Unit sur la page d'accueil, c'est classe aussi
+    expect(page).to have_css('.well')      # Utilise un well qq part, ca fait tjs clase
+    expect(page).to have_css('.jumbotron') # Utilise un Hero Unit sur la page d'accueil, c'est classe aussi
   end
 
   it 'provides a cool navbar' do
@@ -33,11 +33,11 @@ feature 'Twitter\'s Bootstrap CSS framework' do
 
     within 'nav.navbar-default' do
       # Ici je verifie que tout les elements d'une navbar twitter bootstrap sont presents.
-      page.should have_css('.container')
-      page.should have_css('.navbar-header')
-      page.should have_css('a.navbar-brand')
-      page.should have_css('ul.nav')
-      page.should have_css('.navbar-right')   # Ca c'est pratique pour tout ce qui touche au login.
+      expect(page).to have_css('.container')
+      expect(page).to have_css('.navbar-header')
+      expect(page).to have_css('a.navbar-brand')
+      expect(page).to have_css('ul.nav')
+      expect(page).to have_css('.navbar-right')   # Ca c'est pratique pour tout ce qui touche au login.
     end
   end
 end

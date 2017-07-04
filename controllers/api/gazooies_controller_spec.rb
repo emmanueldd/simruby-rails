@@ -11,7 +11,7 @@ describe Api::GazooiesController do
     it "Lets get the gazooies list ... API style !" do
       gazooies = Gazooy.create! valid_attributes
       get :index, {}
-      assigns(:gazooies).should eq([gazooies])
+      expect(assigns(:gazooies)).to eq([gazooies])
     end
   end
 
@@ -19,11 +19,11 @@ describe Api::GazooiesController do
     it "check the render for a [ok] gazooy" do
       gazooy = Gazooy.create! valid_attributes
       get :show, {:id => gazooy.to_param}
-      assigns(:gazooy).should eq(gazooy)
+      expect(assigns(:gazooy)).to eq(gazooy)
     end
     it "check the render for a [ko] gazooy" do
       get :show, {:id => 999999} # 9999999 just to show it's not supposed to exist :-)
-      assigns(:gazooy).should be_nil
+      expect(assigns(:gazooy)).to be_nil
     end
   end
 end

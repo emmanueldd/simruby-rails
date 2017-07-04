@@ -12,7 +12,7 @@ describe Api::HashTagsController do
       gazooy = Gazooy.create! valid_attributes_gazooies
       all_hashtag = HashTag.all
       get :index, {}
-      assigns(:hash_tags).should eq(all_hashtag)
+      expect(assigns(:hash_tags)).to eq(all_hashtag)
     end
   end
 
@@ -22,7 +22,7 @@ describe Api::HashTagsController do
       hash_tag = HashTag.last
       get :show, {:id => hash_tag.name}
       hash_tag = hash_tag.gazooies.limit(50).load
-      assigns(:gazooies).should eq(hash_tag)
+      expect(assigns(:gazooies)).to eq(hash_tag)
     end
   end
 

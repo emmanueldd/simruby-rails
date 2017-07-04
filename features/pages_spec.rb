@@ -85,8 +85,8 @@ Ceci est un autre test"
       end
 
       visit('/pages/page-de-test') # Pay attention to automatic slug generation here
-      page.should have_content('TestTitle')
-      page.should have_css('.css-test')
+      expect(page).to have_content('TestTitle')
+      expect(page).to have_css('.css-test')
     end
 
     it 'displays a form for page edition' do

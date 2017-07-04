@@ -21,7 +21,7 @@ feature 'Gazooy::HashTags' do
     tags.include?('simple')
     tags.include?('gazooy')
     tags.include?('ruby')
-    HashTag.find_by(name: 'simple').should be_a(HashTag)
+    expect(HashTag.find_by(name: 'simple')).to be_a(HashTag)
   end
 
   it 'displays all the gazooies having some #hastag' do
@@ -29,14 +29,14 @@ feature 'Gazooy::HashTags' do
 
     visit hash_tag_path('ruby')
     within('.gazooies-block') do
-      page.should have_content 'This is a #simple #gazooy'
-      page.should have_content 'This is another #gazooy'
+      expect(page).to have_content 'This is a #simple #gazooy'
+      expect(page).to have_content 'This is another #gazooy'
     end
 
     visit hash_tag_path('simple')
     within('.gazooies-block') do
-      page.should have_content 'This is a #simple #gazooy'
-      page.should have_no_content 'This is another #gazooy'
+      expect(page).to have_content 'This is a #simple #gazooy'
+      expect(page).to have_no_content 'This is another #gazooy'
     end
   end
 
@@ -44,9 +44,9 @@ feature 'Gazooy::HashTags' do
     visit gazooies_path
 
     within('.gazooy-block') do
-      page.should have_link('#simple')
-      page.should have_link('#gazooy')
-      page.should have_link('#ruby')
+      expect(page).to have_link('#simple')
+      expect(page).to have_link('#gazooy')
+      expect(page).to have_link('#ruby')
     end
   end
 
@@ -59,18 +59,18 @@ feature 'Gazooy::HashTags' do
 
     visit root_path
     within('.trends') do
-      page.should have_content 'Tendances'
-      page.should have_no_content '#ht0'
-      page.should have_no_content '#ht3'
-      page.should have_content '#ht10'
-      page.should have_content '#ht13'
+      expect(page).to have_content 'Tendances'
+      expect(page).to have_no_content '#ht0'
+      expect(page).to have_no_content '#ht3'
+      expect(page).to have_content '#ht10'
+      expect(page).to have_content '#ht13'
     end
 
     click_on '#ht13' # Leads to /hash_tags/ht13
-    page.should have_content '#ht13 gazooy number 0'
-    page.should have_content '#ht13 gazooy number 7'
-    page.should have_content '#ht13 gazooy number 13'
-    page.should have_no_content '#ht12 gazooy number 0'
-    page.should have_no_content '#ht0 gazooy number 0'
+    expect(page).to have_content '#ht13 gazooy number 0'
+    expect(page).to have_content '#ht13 gazooy number 7'
+    expect(page).to have_content '#ht13 gazooy number 13'
+    expect(page).to have_no_content '#ht12 gazooy number 0'
+    expect(page).to have_no_content '#ht0 gazooy number 0'
   end
 end

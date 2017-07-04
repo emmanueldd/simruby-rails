@@ -22,18 +22,18 @@ describe Api::UserGazooiesController do
       user = User.create! valid_attributes_user
       gazooy = Gazooy.create! valid_attributes_gazooies
       get :index, {user_id: user.id}
-      assigns(:gazooies).should eq([gazooy])
+      expect(assigns(:gazooies)).to eq([gazooy])
     end
 
     it 'Test on api_user_gazooies#index no gazooies' do
       user = User.create! valid_attributes_user
       get :index, {user_id: user.id}
-      assigns(:gazooies).should be_empty
+      expect(assigns(:gazooies)).to be_empty
     end
 
     it 'Test on api_user_gazooies#index no users and no gazooies' do
       get :index, {user_id: 999999} # 9999999 just to show it's not supposed to exist :-)
-      assigns(:gazooies).should be_nil
+      expect(assigns(:gazooies)).to be_nil
     end
 
 

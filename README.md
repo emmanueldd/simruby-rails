@@ -8,7 +8,7 @@ Programme des 4 jours
 ---------------------
 
 Durant cette 2e partie de la semaine, nous allons travailler sur
-Rails. Le nombre de features (merveilleuses) et la puissance
+Rails. Le nombre de features (merveilleuse) et la puissance
 (extraordinaire) de ce framework sont si grandes que nous n'aurons
 pas, helas (hélas!), le temps d'en aborder toute la richesse, ni celui
 d'explorer tous les facettes de sa communauté. Nous allons néanmoins

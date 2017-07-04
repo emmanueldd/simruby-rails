@@ -23,10 +23,10 @@ feature 'Authentication with Devise' do
     it 'has a SignUp form' do
       visit new_user_registration_path
 
-      page.should have_selector('#user_username')
-      page.should have_selector('#user_email')
-      page.should have_selector('#user_password')
-      page.should have_selector('#user_password_confirmation')
+      expect(page).to have_selector('#user_username')
+      expect(page).to have_selector('#user_email')
+      expect(page).to have_selector('#user_password')
+      expect(page).to have_selector('#user_password_confirmation')
     end
 
     it 'actually allows to signup' do
@@ -40,7 +40,7 @@ feature 'Authentication with Devise' do
         click_on "S'enregistrer"
       end
 
-      page.should have_content 'Bienvenue !'
+      expect(page).to have_content 'Bienvenue !'
     end
 
     it 'validates email' do
@@ -54,7 +54,7 @@ feature 'Authentication with Devise' do
         click_on "S'enregistrer"
       end
 
-      page.should have_content 'Adresse email invalide'
+      expect(page).to have_content 'Adresse email invalide'
     end
 
     it 'validates password confirmation' do
@@ -68,7 +68,7 @@ feature 'Authentication with Devise' do
         click_on "S'enregistrer"
       end
 
-      page.should have_content 'differente'
+      expect(page).to have_content 'differente'
     end
   end
 
@@ -113,7 +113,7 @@ feature 'Authentication with Devise' do
         click_on 'account-dropdown' # Bootstrap's %a.dropdown-toggle must have id #account-dropdown
         click_on 'Mon Compte'
       end
-      current_path.should == edit_user_registration_path
+      expect(current_path).to eq(edit_user_registration_path)
     end
 
     it 'allows change of email, pass and username' do
@@ -129,16 +129,16 @@ feature 'Authentication with Devise' do
       end
 
       expect(page).to have_content 'Votre compte a été modifié avec succès'
-      User.find_by(username: 'test_new').should be_true
-      User.find_by(email: 'new@email.com').should be_true
+      expect(User.find_by(username: 'test_new')).to be_truthy
+      expect(User.find_by(email: 'new@email.com')).to be_truthy
     end
 
     it 'allows to quit !' do
       visit edit_user_registration_path
 
-      User.find_by(username: user.username).should be_true
+      expect(User.find_by(username: user.username)).to be_truthy
       click_on 'Quitter Gazooyr'
-      User.find_by(username: user.username).should be_nil
+      expect(User.find_by(username: user.username)).to be_nil
     end
   end
 end

@@ -4,31 +4,31 @@ describe GazooiesController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/gazooies").should route_to("gazooies#index")
+      expect(get("/gazooies")).to route_to("gazooies#index")
     end
 
     it "NO routes to #new" do
-      get("/gazooies/new").should_not route_to("gazooies#new")
+      expect(get("/gazooies/new")).not_to route_to("gazooies#new")
     end
 
     it "routes to #show" do
-      get("/gazooies/1").should route_to("gazooies#show", :id => "1")
+      expect(get("/gazooies/1")).to route_to("gazooies#show", :id => "1")
     end
 
     it "NO routes to #edit" do
-      get("/gazooies/1/edit").should_not be_routable
+      expect(get("/gazooies/1/edit")).not_to be_routable
     end
 
     it "routes to #create" do
-      post("/gazooies").should route_to("gazooies#create")
+      expect(post("/gazooies")).to route_to("gazooies#create")
     end
 
     it "NO routes to #update" do
-      put("/gazooies/1").should_not be_routable
+      expect(put("/gazooies/1")).not_to be_routable
     end
 
     it "NO routes to #destroy" do
-      delete("/gazooies/1").should_not be_routable
+      expect(delete("/gazooies/1")).not_to be_routable
     end
 
   end

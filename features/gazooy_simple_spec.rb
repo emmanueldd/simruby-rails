@@ -27,8 +27,8 @@ feature 'Gazooy Simple' do
     it 'displays latest gazooies on the left menu' do
       visit root_path
 
-      page.should have_content gazooies[0].text
-      page.should have_content gazooies[1].text
+      expect(page).to have_content gazooies[0].text
+      expect(page).to have_content gazooies[1].text
     end
 
     it 'displays a \'Stream\' link in the navbar to go to gazooies#index' do
@@ -38,15 +38,15 @@ feature 'Gazooy Simple' do
         click_on 'Stream'
       end
 
-      current_path.should == gazooies_path
+      expect(current_path).to eq(gazooies_path)
     end
 
     it 'displays latest gazooies on gazooies#index' do
       visit gazooies_path
 
       within('.gazooies-block') do
-        page.should have_content gazooies[0].text
-        page.should have_content gazooies[1].text
+        expect(page).to have_content gazooies[0].text
+        expect(page).to have_content gazooies[1].text
       end
     end
 
@@ -54,15 +54,15 @@ feature 'Gazooy Simple' do
       visit gazooies_path
 
       block = find('.gazooies-block')
-      block.text.should =~ /#{gazooies[1].text}.+#{gazooies[0].text}/
+      expect(block.text).to match(/#{gazooies[1].text}.+#{gazooies[0].text}/)
     end
 
     it 'displays the avatar of the post profile near the gazooy' do
       visit gazooies_path
 
       block = find('.gazooy-block:nth-of-type(1)')
-      block.should have_selector('img.avatar')
-      block.should have_image(user.profile.avatar.thumb.url)
+      expect(block).to have_selector('img.avatar')
+      expect(block).to have_image(user.profile.avatar.thumb.url)
     end
 
     it 'allows to click on the avatar to visit the profile of the gazooyr' do
@@ -74,8 +74,8 @@ feature 'Gazooy Simple' do
         find('img.avatar').trigger 'click'
       end
 
-      page.should have_content "@#{user.username}"
-      current_path.should == profile_path(user.username)
+      expect(page).to have_content "@#{user.username}"
+      expect(current_path).to eq(profile_path(user.username))
     end
   end
 
@@ -91,7 +91,7 @@ feature 'Gazooy Simple' do
       visit root_path
 
       within('.navbar-default') do
-        page.should have_link 'Gazooyer'
+        expect(page).to have_link 'Gazooyer'
       end
     end
 
@@ -99,18 +99,18 @@ feature 'Gazooy Simple' do
       visit root_path
 
       # The form is not displayed by default
-      page.should have_no_content 'Gazooyez!'
-      page.should have_no_field   'gazooy[text]'
-      page.should have_no_button  'Envoyer !'
+      expect(page).to have_no_content 'Gazooyez!'
+      expect(page).to have_no_field   'gazooy[text]'
+      expect(page).to have_no_button  'Envoyer !'
 
       # Clicking on 'Gazooyer' opens the modal with the form
       within('.navbar-default') do
         click_on 'Gazooyer'
       end
 
-      within('.modal-header') { page.should have_content 'Gazooyez!' }
-      within('.modal-body')   { page.should have_field   'gazooy[text]' }
-      within('.modal-footer') { page.should have_button  'Envoyer !' }
+      within('.modal-header') { expect(page).to have_content 'Gazooyez!' }
+      within('.modal-body')   { expect(page).to have_field   'gazooy[text]' }
+      within('.modal-footer') { expect(page).to have_button  'Envoyer !' }
     end
 
     it 'creates Gazooy when filling and submitting the form' do
@@ -124,20 +124,20 @@ feature 'Gazooy Simple' do
       end
 
       visit gazooies_path
-      page.should have_content gz
+      expect(page).to have_content gz
       visit root_path
-      page.should have_content gz
+      expect(page).to have_content gz
     end
 
     it 'displays a counter of the remaining characters' do
       open_gazooy_form
 
       within('#new_gazooy') do
-        page.should have_content '142'
+        expect(page).to have_content '142'
         fill_in 'gazooy[text]', with: '12'
-        page.should have_content '140'
+        expect(page).to have_content '140'
         fill_in 'gazooy[text]', with: '1234567890'
-        page.should have_content '132'
+        expect(page).to have_content '132'
       end
     end
 
@@ -148,9 +148,9 @@ feature 'Gazooy Simple' do
         click_on 'Fermer'
       end
 
-      page.should have_no_content 'Envoyer !'
-      page.should have_no_content 'Gazooyez!'
-      page.should have_no_field   'gazooy[text]'
+      expect(page).to have_no_content 'Envoyer !'
+      expect(page).to have_no_content 'Gazooyez!'
+      expect(page).to have_no_field   'gazooy[text]'
     end
   end
 end
