@@ -22,10 +22,10 @@ Ordre des exercices
 Comment exécuter les specs ?
 ----------------------------
 
-Depuis la vm vagrant fournie ici: http://github.com/elthariel/simruby
+Depuis la vm vagrant fournie ici: http://github.com/emmanueldd/simruby
 
     host $ cd /vagrant
-    host $ gem install rails -v '~4.0'
+    host $ gem install rails -v '~5.1.2'
     host $ rails new gazooyr
 
 Maintenant, il faut editer le Gemfile de votre application pour
@@ -40,7 +40,7 @@ group :development, :test do
   # Some tools to generate test data
   gem 'factory_girl_rails'
   # Use debugger
-  gem 'debugger'
+  gem 'debugger2'
   # Use capybara (run acceptance test in a browser)
   gem 'capybara'
   # Deploy the right version of PhantomJS using rubygems
@@ -92,8 +92,3 @@ Ou encore seulement un seul example, en specifiant le fichier puis la
 ligne de l'exemple
 
     host $ rspec spec/features/welcome_spec.rb:42
-
-
-
-
-
