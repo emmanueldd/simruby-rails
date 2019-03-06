@@ -22,16 +22,18 @@ Ordre des exercices
 Comment exécuter les specs ?
 ----------------------------
 
-Depuis la vm vagrant fournie ici: http://github.com/emmanueldd/simruby
-
-    host $ cd /vagrant
-    host $ gem install rails -v '~5.1.2'
     host $ rails new gazooyr
+    host $ cd gazooyr
+    host $ git clone https://github.com/emmanueldd/simruby-rails.git spec
 
 Maintenant, il faut editer le Gemfile de votre application pour
 ajouter toutes les dependances des tests unitaires :
 
 ```ruby
+
+# il faut supprimer l'occurence précédente de sqlite3 du gemfile, et la modifier comme suit :
+gem 'sqlite3', '~> 1.3.6'
+
 group :development, :test do
   # Testing framework for rails 3.x and 4.x
   gem 'rspec-rails'
@@ -60,9 +62,12 @@ end
 
 Maintenant mettez à jour votre bundle
 
-    host $ cd /vagrant/gazooyr
     host $ bundle install
-    [...]
+
+Et créez votre base de données
+
+    host $ rails db:create
+
 
 D'autre part, puisque les specs sont fournies, vous devez désactiver
 la génération des specs par les générateurs de rails. Il faut donc
@@ -80,8 +85,6 @@ end
 
 Vous devriez maintenant pouvoir executer les specs :
 
-    host $ ln -s /vagrant/rails /vagrant/gazooyr/spec
-    host $ cd /vagrant
     host $ rspec
 
 Vous pouvez aussi executer seulement un seul fichier de spec
