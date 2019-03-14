@@ -108,7 +108,7 @@ Un slug est un nom au format url, les espaces sont donc remplacés par des "-" .
 Exemple : "psg éliminé" devient "psg-elimine".
 Nous avons vu que nous pouvions retrouver une entrée en base de données, depuis son id avec NomDuModel.find(objet_id) qui est l'équivalent de NomDuModel.find_by(id: objet_id) . Je vous laisse transposer tout ça avec le slug..
 
-N'oubliez pas que la console est votre ami, à la racien de votre projet, vous pouvez taper la commande suivante :
+N'oubliez pas que la console est votre amie, à la racine de votre projet, vous pouvez taper la commande suivante :
 
     host $ rails c
 
@@ -118,6 +118,6 @@ Page.find(...)
 Page.find_by(...)
 Page.where(...)
 
-Pour ce qui est des gazooy ou plutôt des gazooies, je vous laisse faire vos recherche sur Ruby On Rails, le pluriel d'une Class, et le fichier "inflections.rb". "Ruby On Rails plural class inflections.rb" sur google devrait faire l'affaire.
+Pour ce qui est des gazooy ou plutôt des gazooies, je vous laisse faire vos recherches sur Ruby On Rails, le pluriel d'une Class, et le fichier "inflections.rb". "Ruby On Rails plural class inflections.rb" sur google devrait faire l'affaire.
 
 Si vous rencontrez des problèmes, vous pouvez me contacter sur Linkedin. Pensez-y, vraiment !
