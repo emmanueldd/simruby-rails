@@ -25,28 +25,24 @@ feature 'Profile' do
   it 'can show a profile' do
     visit profile_path(user.profile)
 
-    expect(page).to have_content "@#{user.username}"
+    expect(page).to have_content "@#{user.email}"
     expect(page).to have_content user.profile.name
     expect(page).to have_content user.profile.place
     expect(page).to have_content user.profile.website
     expect(page).to have_content user.profile.bio
   end
 
-  it 'allows to use \'username\' instead of \'id\' in path' do
-    visit profile_path(user.username)
-    expect(page).to have_content "@#{user.username}"
-  end
 
   it 'allows to use \'me\' to access currently logged in user\'s profile' do
     visit profile_path('me')
-    expect(page).to have_content "@#{user.username}"
+    expect(page).to have_content "@#{user.email}"
   end
 
   it 'displays a link in the navbar to \'/profiles/me\'' do
     visit root_path
     expect(page).to have_content 'Moi'
     click_on 'Moi'
-    expect(page).to have_content "@#{user.username}"
+    expect(page).to have_content "@#{user.email}"
     expect(page).to have_content user.profile.bio
   end
 
@@ -97,7 +93,7 @@ feature 'Profile' do
     click_on 'Editer'
     expect(current_path).to eq(edit_profile_path('me'))
 
-    u = User.create username: 'pwet', email: 'pwet@email.fr', password: 'qweasd', password_confirmation: 'qweasd'
+    u = User.create email: 'pwet@email.fr', password: 'qweasd', password_confirmation: 'qweasd'
     visit profile_path(u)
     expect(page).to have_no_link 'Editer'
   end

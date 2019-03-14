@@ -14,7 +14,7 @@ require 'spec_helper'
 
 feature 'Authentication with Devise' do
   given! :user do
-    User.create(email: 'test@example.com', username: 'test',
+    User.create(email: 'test@example.com',
                 password: 'qweasd', password_confirmation: 'qweasd')
   end
 
@@ -23,7 +23,6 @@ feature 'Authentication with Devise' do
     it 'has a SignUp form' do
       visit new_user_registration_path
 
-      expect(page).to have_selector('#user_username')
       expect(page).to have_selector('#user_email')
       expect(page).to have_selector('#user_password')
       expect(page).to have_selector('#user_password_confirmation')
@@ -33,7 +32,6 @@ feature 'Authentication with Devise' do
       visit new_user_registration_path
 
       within('#new_user') do
-        fill_in 'user[username]',              with: 'test123'
         fill_in 'user[email]',                 with: 'test123@example.com'
         fill_in 'user[password]',              with: 'qweasd'
         fill_in 'user[password_confirmation]', with: 'qweasd'
@@ -47,7 +45,6 @@ feature 'Authentication with Devise' do
       visit new_user_registration_path
 
       within('#new_user') do
-        fill_in 'user[username]',              with: 'test123'
         fill_in 'user[email]',                 with: 'test123'
         fill_in 'user[password]',              with: 'qweasd'
         fill_in 'user[password_confirmation]', with: 'qweasd'
@@ -61,7 +58,6 @@ feature 'Authentication with Devise' do
       visit new_user_registration_path
 
       within('#new_user') do
-        fill_in 'user[username]',              with: 'test123'
         fill_in 'user[email]',                 with: 'test123@example.fr'
         fill_in 'user[password]',              with: 'qweasd'
         fill_in 'user[password_confirmation]', with: 'qweasdERROR'
@@ -78,7 +74,7 @@ feature 'Authentication with Devise' do
       visit new_user_session_path
 
       within('#new_user') do
-        fill_in 'user[username]', with: user.username
+        fill_in 'user[emails]', with: user.emails
         fill_in 'user[password]', with: user.password
         check 'user[remember_me]'
 
@@ -116,11 +112,10 @@ feature 'Authentication with Devise' do
       expect(current_path).to eq(edit_user_registration_path)
     end
 
-    it 'allows change of email, pass and username' do
+    it 'allows change of email, pass' do
       visit edit_user_registration_path
 
       within '#edit_user' do
-        fill_in 'user[username]',                 with: 'test_new'
         fill_in 'user[email]',                    with: 'new@email.com'
         fill_in 'user[password]',                 with: 'newpassword'
         fill_in 'user[password_confirmation]',    with: 'newpassword'
@@ -129,16 +124,15 @@ feature 'Authentication with Devise' do
       end
 
       expect(page).to have_content 'Votre compte a été modifié avec succès'
-      expect(User.find_by(username: 'test_new')).to be_truthy
       expect(User.find_by(email: 'new@email.com')).to be_truthy
     end
 
     it 'allows to quit !' do
       visit edit_user_registration_path
 
-      expect(User.find_by(username: user.username)).to be_truthy
+
       click_on 'Quitter Gazooyr'
-      expect(User.find_by(username: user.username)).to be_nil
+      expect(User.find_by(email: user.email)).to be_nil
     end
   end
 end

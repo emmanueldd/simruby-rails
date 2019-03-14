@@ -41,7 +41,7 @@ feature 'Follower / Followee' do
 
   def follow_everyone
     users.each do |u|
-      visit profile_path(u.username)
+      visit profile_path(u.email)
       click_on 'Follow'
     end
     visit profile_path('me')
@@ -53,21 +53,21 @@ feature 'Follower / Followee' do
 
     # Followees
     visit profile_followees_path('me')
-    expect(page).to have_content "Abonnements de @#{user.username}"
-    users.each { |u| expect(page).to have_link "@#{u.username}" }
+    expect(page).to have_content "Abonnements de @#{user.email}"
+    users.each { |u| expect(page).to have_link "@#{u.email}" }
 
     # Followers
     visit profile_followers_path(users[0].profile)
-    expect(page).to have_content "Abonnes de @#{users[0].username}"
-    expect(page).to have_link "@#{user.username}"
+    expect(page).to have_content "Abonnes de @#{users[0].email}"
+    expect(page).to have_link "@#{user.email}"
   end
 
   it 'displays Followees gazooies in user\'s stream' do
-    users.each { |u| Gazooy.create user_id: u.id, text: "Gazooy from @#{u.username}" }
+    users.each { |u| Gazooy.create user_id: u.id, text: "Gazooy from @#{u.email}" }
 
     visit root_path
     within('.navbar-default') { click_on 'Stream' } # gazooies#index
 
-    users.each { |u| expect(page).to have_content "Gazooy from @#{u.username}" }
+    users.each { |u| expect(page).to have_content "Gazooy from @#{u.email}" }
   end
 end

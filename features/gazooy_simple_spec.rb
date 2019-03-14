@@ -74,8 +74,8 @@ feature 'Gazooy Simple' do
         find('img.avatar').trigger 'click'
       end
 
-      expect(page).to have_content "@#{user.username}"
-      expect(current_path).to eq(profile_path(user.username))
+      expect(page).to have_content "@#{user.email}"
+      expect(current_path).to eq(profile_path(user.email))
     end
   end
 

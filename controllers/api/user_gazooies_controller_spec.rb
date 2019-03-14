@@ -12,7 +12,6 @@ describe Api::UserGazooiesController do
 
   # A test content for a new User (just to keep DRY)
   let(:valid_attributes_user) { { "email" => "test@example.com",
-                                  "username" => "test",
                                   "password" => "qweasd",
                                   "password_confirmation" => "qweasd" } }
 

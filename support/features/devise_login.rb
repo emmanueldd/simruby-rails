@@ -28,14 +28,14 @@ require 'spec_helper'
 if defined? User
   shared_context 'authenticated' do
     given! :user do
-      User.create!(email: 'test@example.com', username: 'test',
+      User.create!(email: 'test@example.com',
                    password: 'qweasd', password_confirmation: 'qweasd')
     end
     before(:each) do
       visit new_user_session_path
 
       within('#new_user') do
-        fill_in 'user[username]', with: user.username
+        fill_in 'user[email]', with: user.email
         fill_in 'user[password]', with: user.password
         check 'user[remember_me]'
 
