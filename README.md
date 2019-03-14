@@ -119,3 +119,5 @@ Page.find_by(...)
 Page.where(...)
 
 Pour ce qui est des gazooy ou plutôt des gazooies, je vous laisse faire vos recherche sur Ruby On Rails, le pluriel d'une Class, et le fichier "inflections.rb". "Ruby On Rails plural class inflections.rb" sur google devrait faire l'affaire.
+
+Si vous rencontrez des problèmes, vous pouvez me contacter sur Linkedin. Pensez-y, vraiment !
