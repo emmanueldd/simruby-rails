@@ -100,6 +100,7 @@ ligne de l'exemple
 Petits indices pour les intellects qui lisent la consigne jusqu'au bout 😏
 ----------------------------
 Les specs précédés d'un point (.follow_spec.rb, et .hash_tags_spec.rb) sont en option. Si vous souhaitez les faire, supprimez le point qui précède le nom du fichier.
+Les features à développer sont dans le dossier "features", les specs de routes "routing" sont là pour vous aiguiller.
 
 Vous remarquerez aussi, que j'ai retiré l'authentification par username.
 
