@@ -74,7 +74,7 @@ feature 'Authentication with Devise' do
       visit new_user_session_path
 
       within('#new_user') do
-        fill_in 'user[emails]', with: user.emails
+        fill_in 'user[email]', with: user.email
         fill_in 'user[password]', with: user.password
         check 'user[remember_me]'
 
